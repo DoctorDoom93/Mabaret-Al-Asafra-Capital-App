@@ -278,8 +278,22 @@ class MainActivity : AppCompatActivity() {
 
     // دالة تحميل وتثبيت الـ APK مباشرة عبر Coroutines
     private fun downloadAndInstallApk(apkUrl: String) {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_download_progress, null)
+
+        // 💡 استخدام LinearProgressIndicator الخاص بـ Material 3
+        val progressBar = dialogView.findViewById<com.google.android.material.progressindicator.LinearProgressIndicator>(R.id.dialogProgressBar)
+        val tvPercent = dialogView.findViewById<TextView>(R.id.tvProgressPercent)
+
+        val dialog = MaterialAlertDialogBuilder(this, R.style.CustomAlertDialogTheme)
+            .setTitle("جاري تحميل التحديث...")
+            .setView(dialogView)
+            .setCancelable(false)
+            .create()
+
+        dialog.window?.decorView?.layoutDirection = View.LAYOUT_DIRECTION_RTL
+        dialog.show()
+
         showUpdateProgressBar(true)
-        Toast.makeText(this, "جاري تحميل التحديث...", Toast.LENGTH_SHORT).show()
 
         CoroutineScope(Dispatchers.IO).launch {
             try {
@@ -289,24 +303,46 @@ class MainActivity : AppCompatActivity() {
 
                 if (connection.responseCode != HttpURLConnection.HTTP_OK) {
                     withContext(Dispatchers.Main) {
+                        dialog.dismiss()
                         showUpdateProgressBar(false)
                         Toast.makeText(this@MainActivity, "فشل الاتصال لتحميل التحديث", Toast.LENGTH_SHORT).show()
                     }
                     return@launch
                 }
 
+                val fileLength = connection.contentLength
                 val file = File(getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), "update.apk")
                 if (file.exists()) {
                     file.delete()
                 }
 
-                connection.inputStream.use { input ->
-                    file.outputStream().use { output ->
-                        input.copyTo(output)
+                val inputStream = connection.inputStream
+                val outputStream = file.outputStream()
+
+                val data = ByteArray(8192)
+                var totalBytesRead: Long = 0
+                var count: Int
+
+                while (inputStream.read(data).also { count = it } != -1) {
+                    totalBytesRead += count.toLong()
+                    outputStream.write(data, 0, count)
+
+                    if (fileLength > 0) {
+                        val progress = ((totalBytesRead * 100) / fileLength).toInt()
+                        withContext(Dispatchers.Main) {
+                            // 💡 تحديث التقدم مع تأثير الحركة السلس (Smooth Animation) الخاص بـ M3
+                            progressBar.setProgressCompat(progress, true)
+                            tvPercent.text = "$progress%"
+                        }
                     }
                 }
 
+                outputStream.flush()
+                outputStream.close()
+                inputStream.close()
+
                 withContext(Dispatchers.Main) {
+                    dialog.dismiss()
                     showUpdateProgressBar(false)
                     installApk(file)
                 }
@@ -314,13 +350,13 @@ class MainActivity : AppCompatActivity() {
             } catch (e: Exception) {
                 e.printStackTrace()
                 withContext(Dispatchers.Main) {
+                    dialog.dismiss()
                     showUpdateProgressBar(false)
                     Toast.makeText(this@MainActivity, "حدث خطأ أثناء التحميل: ${e.message}", Toast.LENGTH_LONG).show()
                 }
             }
         }
     }
-
     private fun installApk(file: File) {
         val intent = Intent(Intent.ACTION_VIEW).apply {
             val uri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
