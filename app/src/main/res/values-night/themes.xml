@@ -1,0 +1,69 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- الثيم الأساسي للتطبيق -->
+    <style name="Theme.MabCapOncall" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- خط التطبيق بالكامل (لكافة عناصر النصوص) -->
+        <item name="fontFamily">@font/app_font_family</item>
+        <item name="android:fontFamily">@font/app_font_family</item>
+
+        <!-- تخصيص خط وثيم الـ AlertDialog (شاشة تأكيد الخروج والتنبيهات) -->
+        <item name="alertDialogTheme">@style/CustomAlertDialogTheme</item>
+    </style>
+
+    <!-- ثيم مخصص لشاشة تأكيد الخروج والتنبيهات AlertDialog باللون الزمردي -->
+    <style name="CustomAlertDialogTheme" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="fontFamily">@font/app_font_family</item>
+        <item name="android:fontFamily">@font/app_font_family</item>
+
+        <!-- 💡 جعل خلفية نافذة التنبيه باللون الزمردي الداكن -->
+        <item name="colorSurface">#FF0F766E</item>
+        <item name="android:background">#FF0F766E</item>
+
+        <!-- زوايا دائرية بنمط Material 3 -->
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Material3.Corner.ExtraLarge</item>
+        <item name="buttonBarPositiveButtonStyle">@style/DialogPositiveButtonStyle</item>
+        <item name="buttonBarNegativeButtonStyle">@style/DialogNegativeButtonStyle</item>
+
+        <!-- ربط أنماط العنوان والنص -->
+        <item name="materialAlertDialogTitleTextStyle">@style/AlertDialogTitleTextStyle</item>
+        <item name="materialAlertDialogBodyTextStyle">@style/AlertDialogBodyTextStyle</item>
+    </style>
+
+    <!-- 1. أزرار النافذة (كتابة بيضاء بسماكة 400) -->
+    <style name="DialogPositiveButtonStyle" parent="Widget.Material3.Button.TextButton">
+        <item name="fontFamily">@font/app_font_family</item>
+        <item name="android:fontFamily">@font/app_font_family</item>
+        <item name="android:textColor">#FFFFFF</item> <!-- لون الكتابة أبيض -->
+        <item name="android:textSize">15sp</item>
+        <item name="android:textFontWeight" tools:targetApi="p">400</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="DialogNegativeButtonStyle" parent="Widget.Material3.Button.TextButton">
+        <item name="fontFamily">@font/app_font_family</item>
+        <item name="android:fontFamily">@font/app_font_family</item>
+        <item name="android:textColor">#FFFFFF</item> <!-- لون الكتابة أبيض -->
+        <item name="android:textSize">15sp</item>
+        <item name="android:textFontWeight" tools:targetApi="p">400</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <!-- 2. عنوان التنبيه (كتابة بيضاء وسماكة 700) -->
+    <style name="AlertDialogTitleTextStyle" parent="MaterialAlertDialog.Material3.Title.Text">
+        <item name="fontFamily">@font/app_font_family</item>
+        <item name="android:fontFamily">@font/app_font_family</item>
+        <item name="android:textColor">#FFFFFF</item> <!-- لون العنوان أبيض -->
+        <item name="android:textSize">20sp</item>
+        <item name="android:textFontWeight" tools:targetApi="p">700</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- 3. نص رسالة التنبيه (كتابة أوف-وايت ناعمة وسماكة 400) -->
+    <style name="AlertDialogBodyTextStyle" parent="MaterialAlertDialog.Material3.Body.Text">
+        <item name="fontFamily">@font/app_font_family</item>
+        <item name="android:fontFamily">@font/app_font_family</item>
+        <item name="android:textColor">#ECFDF5</item> <!-- أبيض ناعم للرسالة مريح للعين فوق الزمردي -->
+        <item name="android:textSize">16sp</item>
+        <item name="android:textFontWeight" tools:targetApi="p">400</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+</resources>

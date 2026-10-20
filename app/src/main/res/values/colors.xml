@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="slate">#FF0F172A</color>
+    <!-- لون زمردي داكن لنوافذ التنبيه (Emerald 900) -->
+    <color name="emerald_dark">#FF0F766E</color>
+
+    <!-- لون زمردي فاتح شفاف للتفاعل عند الضغط على الأزرار -->
+    <color name="emerald_ripple">#FF128F85</color>
+</resources>
