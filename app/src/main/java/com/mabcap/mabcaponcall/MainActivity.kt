@@ -1,11 +1,8 @@
 package com.mabcap.mabcaponcall
 
 import android.animation.ObjectAnimator
-import android.app.DownloadManager
-import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
 import android.content.res.Configuration
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
@@ -265,8 +262,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // دالة تحميل وتثبيت الـ APK عبر DownloadManager
-// دالة تحميل وتثبيت الـ APK مباشرة عبر Coroutines (بدون BroadcastReceiver)
+    // دالة تحميل وتثبيت الـ APK مباشرة عبر Coroutines
     private fun downloadAndInstallApk(apkUrl: String) {
         showUpdateProgressBar(true)
         Toast.makeText(this, "جاري تحميل التحديث...", Toast.LENGTH_SHORT).show()
@@ -313,6 +309,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
     private fun installApk(file: File) {
         val intent = Intent(Intent.ACTION_VIEW).apply {
             val uri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -450,9 +447,8 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
-// كلاس مساعد لجلب بيانات الإصدار من GitHub Releases API
+// كلاس مساعد لجلب بيانات الإصدار من GitHub Releases API (محدث ومرن)
 class GitHubUpdateChecker(private val context: Context) {
-    // استبدل DoctorDoom93 واسم المستودع بما يناسب مشروعك الفعلي على GitHub
     private val owner = "DoctorDoom93"
     private val repo = "mabcaponcall"
     private val apiReleaseUrl = "https://api.github.com/repos/$owner/$repo/releases/latest"
@@ -475,7 +471,8 @@ class GitHubUpdateChecker(private val context: Context) {
                     reader.close()
 
                     val json = JSONObject(response.toString())
-                    val tagName = json.getString("tag_name").replace("v", "")
+                    val rawTagName = json.getString("tag_name").trim()
+                    val tagNameClean = rawTagName.lowercase().replace("v", "")
                     val releaseNotes = json.optString("body", "لا توجد تفاصيل متاحة.")
 
                     val assets: JSONArray = json.getJSONArray("assets")
@@ -497,20 +494,29 @@ class GitHubUpdateChecker(private val context: Context) {
                         @Suppress("DEPRECATION")
                         packageInfo.versionCode
                     }
+                    val currentVersionName = packageInfo.versionName ?: ""
 
-                    val latestVersionCode = tagName.toIntOrNull() ?: 1
+                    // فحص ذكي: هل الـ Tag رقماً صحيحاً (مثل 2) أم صيغة إصدار (مثل 1.1)؟
+                    val latestVersionCode = tagNameClean.toIntOrNull()
 
-                    if (latestVersionCode > currentVersionCode) {
+                    val isUpdateAvailable = if (latestVersionCode != null) {
+                        // إذا كان رقماً صحيحاً، قارنه مع versionCode
+                        latestVersionCode > currentVersionCode
+                    } else {
+                        // إذا كان نصياً/عشرياً، قارنه مع versionName للتطبيق
+                        tagNameClean != currentVersionName.lowercase().replace("v", "")
+                    }
+
+                    if (isUpdateAvailable) {
                         return@withContext UpdateInfo(
-                            versionName = tagName,
-                            versionCode = latestVersionCode,
+                            versionName = rawTagName,
+                            versionCode = latestVersionCode ?: (currentVersionCode + 1),
                             releaseNotes = releaseNotes,
                             apkDownloadUrl = apkUrl
                         )
                     }
                 }
-            }
-            catch (e: Exception) {
+            } catch (e: Exception) {
                 e.printStackTrace()
             }
             null
