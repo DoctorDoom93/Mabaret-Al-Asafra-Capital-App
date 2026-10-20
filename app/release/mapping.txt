@@ -3,8 +3,8 @@
 # min_api: 23
 # common_typos_disable
 # {"id":"com.android.tools.r8.mapping","version":"2.2"}
-# pg_map_id: 2b5e8ad68dbf1c2a48e69b4b5a36d79822bb6072b264cd450bda98826217fa92
-# pg_map_hash: SHA-256 2b5e8ad68dbf1c2a48e69b4b5a36d79822bb6072b264cd450bda98826217fa92
+# pg_map_id: 7b83ea13fb61a3c481c97c2fc69f0d6238c27e3f954695681c74b83fcf693212
+# pg_map_hash: SHA-256 7b83ea13fb61a3c481c97c2fc69f0d6238c27e3f954695681c74b83fcf693212
 android.app.AppComponentFactory -> android.app.AppComponentFactory:
 # {"id":"com.android.tools.r8.synthesized"}
     void <clinit>() -> <clinit>
@@ -42923,135 +42923,195 @@ androidx.core.content.ContextCompat -> androidx.core.content.a:
     21:27:java.util.concurrent.Executor androidx.core.os.ExecutorCompat.create(android.os.Handler):37:37 -> c
     21:27:java.util.concurrent.Executor getMainExecutor(android.content.Context):549 -> c
     1:5:java.lang.Object getSystemService(android.content.Context,java.lang.Class):604:604 -> d
-androidx.core.content.FileProvider -> androidx.core.content.b:
+androidx.core.content.FileProvider -> androidx.core.content.FileProvider:
 # {"id":"sourceFile","fileName":"FileProvider.java"}
-    java.io.File DEVICE_ROOT -> a
-    java.util.HashMap sCache -> b
-    1:9:void <clinit>():371:371 -> <clinit>
-    10:17:void <clinit>():374:374 -> <clinit>
-    1:3:androidx.core.content.FileProvider$PathStrategy getPathStrategy(android.content.Context,java.lang.String,int):453:453 -> a
-    1:3:android.net.Uri getUriForFile(android.content.Context,java.lang.String,java.io.File):414 -> a
-    4:11:androidx.core.content.FileProvider$PathStrategy getPathStrategy(android.content.Context,java.lang.String,int):454:454 -> a
-    4:11:android.net.Uri getUriForFile(android.content.Context,java.lang.String,java.io.File):414 -> a
-    12:15:androidx.core.content.FileProvider$PathStrategy getPathStrategy(android.content.Context,java.lang.String,int):457:457 -> a
-    12:15:android.net.Uri getUriForFile(android.content.Context,java.lang.String,java.io.File):414 -> a
-    16:23:androidx.core.content.FileProvider$PathStrategy getPathStrategy(android.content.Context,java.lang.String,int):465:465 -> a
-    16:23:android.net.Uri getUriForFile(android.content.Context,java.lang.String,java.io.File):414 -> a
-    24:32:androidx.core.content.FileProvider$PathStrategy getPathStrategy(android.content.Context,java.lang.String,int):462:462 -> a
-    24:32:android.net.Uri getUriForFile(android.content.Context,java.lang.String,java.io.File):414 -> a
-    33:40:androidx.core.content.FileProvider$PathStrategy getPathStrategy(android.content.Context,java.lang.String,int):459:459 -> a
-    33:40:android.net.Uri getUriForFile(android.content.Context,java.lang.String,java.io.File):414 -> a
-    41:41:androidx.core.content.FileProvider$PathStrategy getPathStrategy(android.content.Context,java.lang.String,int):467:467 -> a
-    41:41:android.net.Uri getUriForFile(android.content.Context,java.lang.String,java.io.File):414 -> a
-    42:48:android.net.Uri androidx.core.content.FileProvider$SimplePathStrategy.getUriForFile(java.io.File):895:895 -> a
-    42:48:android.net.Uri getUriForFile(android.content.Context,java.lang.String,java.io.File):415 -> a
-    49:71:android.net.Uri androidx.core.content.FileProvider$SimplePathStrategy.getUriForFile(java.io.File):902:902 -> a
-    49:71:android.net.Uri getUriForFile(android.content.Context,java.lang.String,java.io.File):415 -> a
-    72:81:android.net.Uri androidx.core.content.FileProvider$SimplePathStrategy.getUriForFile(java.io.File):903:903 -> a
-    72:81:android.net.Uri getUriForFile(android.content.Context,java.lang.String,java.io.File):415 -> a
-    82:85:boolean androidx.core.content.FileProvider$SimplePathStrategy.belongsToRoot(java.lang.String,java.lang.String):968:968 -> a
-    82:85:android.net.Uri androidx.core.content.FileProvider$SimplePathStrategy.getUriForFile(java.io.File):904 -> a
-    82:85:android.net.Uri getUriForFile(android.content.Context,java.lang.String,java.io.File):415 -> a
-    86:89:boolean androidx.core.content.FileProvider$SimplePathStrategy.belongsToRoot(java.lang.String,java.lang.String):969:969 -> a
-    86:89:android.net.Uri androidx.core.content.FileProvider$SimplePathStrategy.getUriForFile(java.io.File):904 -> a
-    86:89:android.net.Uri getUriForFile(android.content.Context,java.lang.String,java.io.File):415 -> a
-    90:103:boolean androidx.core.content.FileProvider$SimplePathStrategy.belongsToRoot(java.lang.String,java.lang.String):972:972 -> a
-    90:103:android.net.Uri androidx.core.content.FileProvider$SimplePathStrategy.getUriForFile(java.io.File):904 -> a
-    90:103:android.net.Uri getUriForFile(android.content.Context,java.lang.String,java.io.File):415 -> a
-    104:127:android.net.Uri androidx.core.content.FileProvider$SimplePathStrategy.getUriForFile(java.io.File):905:905 -> a
-    104:127:android.net.Uri getUriForFile(android.content.Context,java.lang.String,java.io.File):415 -> a
-    128:137:android.net.Uri androidx.core.content.FileProvider$SimplePathStrategy.getUriForFile(java.io.File):916:916 -> a
-    128:137:android.net.Uri getUriForFile(android.content.Context,java.lang.String,java.io.File):415 -> a
-    138:143:android.net.Uri androidx.core.content.FileProvider$SimplePathStrategy.getUriForFile(java.io.File):917:917 -> a
-    138:143:android.net.Uri getUriForFile(android.content.Context,java.lang.String,java.io.File):415 -> a
-    144:152:android.net.Uri androidx.core.content.FileProvider$SimplePathStrategy.getUriForFile(java.io.File):918:918 -> a
-    144:152:android.net.Uri getUriForFile(android.content.Context,java.lang.String,java.io.File):415 -> a
-    153:162:android.net.Uri androidx.core.content.FileProvider$SimplePathStrategy.getUriForFile(java.io.File):920:920 -> a
-    153:162:android.net.Uri getUriForFile(android.content.Context,java.lang.String,java.io.File):415 -> a
-    163:196:android.net.Uri androidx.core.content.FileProvider$SimplePathStrategy.getUriForFile(java.io.File):924:924 -> a
-    163:196:android.net.Uri getUriForFile(android.content.Context,java.lang.String,java.io.File):415 -> a
-    197:217:android.net.Uri androidx.core.content.FileProvider$SimplePathStrategy.getUriForFile(java.io.File):925:925 -> a
-    197:217:android.net.Uri getUriForFile(android.content.Context,java.lang.String,java.io.File):415 -> a
-    218:222:android.net.Uri androidx.core.content.FileProvider$SimplePathStrategy.getUriForFile(java.io.File):926:926 -> a
-    218:222:android.net.Uri getUriForFile(android.content.Context,java.lang.String,java.io.File):415 -> a
-    223:228:android.net.Uri androidx.core.content.FileProvider$SimplePathStrategy.getUriForFile(java.io.File):911:911 -> a
-    223:228:android.net.Uri getUriForFile(android.content.Context,java.lang.String,java.io.File):415 -> a
-    229:234:android.net.Uri androidx.core.content.FileProvider$SimplePathStrategy.getUriForFile(java.io.File):897:897 -> a
-    229:234:android.net.Uri getUriForFile(android.content.Context,java.lang.String,java.io.File):415 -> a
-    235:236:androidx.core.content.FileProvider$PathStrategy getPathStrategy(android.content.Context,java.lang.String,int):467:467 -> a
-    235:236:android.net.Uri getUriForFile(android.content.Context,java.lang.String,java.io.File):414 -> a
+    java.lang.Object mLock -> a
+    int mResourceId -> b
+    java.lang.String mAuthority -> c
+    androidx.core.content.FileProvider$PathStrategy mLocalPathStrategy -> d
+      # {"id":"com.android.tools.r8.residualsignature","signature":"Lyd;"}
+    java.lang.String[] COLUMNS -> e
+    java.io.File DEVICE_ROOT -> f
+    java.util.HashMap sCache -> g
+    1:10:void <clinit>():353:353 -> <clinit>
+    11:19:void <clinit>():371:371 -> <clinit>
+    20:27:void <clinit>():374:374 -> <clinit>
+    1:3:void <init>(int):388:388 -> <init>
+    4:10:void <init>(int):376:376 -> <init>
+    11:13:void <init>(int):389:389 -> <init>
+    14:14:void <init>():385:385 -> <init>
+    1:3:androidx.core.content.FileProvider$PathStrategy getLocalPathStrategy():817:817 -> a
+      # {"id":"com.android.tools.r8.residualsignature","signature":"()Lyd;"}
+    4:9:androidx.core.content.FileProvider$PathStrategy getLocalPathStrategy():818:818 -> a
+    10:13:androidx.core.content.FileProvider$PathStrategy getLocalPathStrategy():821:821 -> a
+    14:30:androidx.core.content.FileProvider$PathStrategy getLocalPathStrategy():822:822 -> a
+    31:32:androidx.core.content.FileProvider$PathStrategy getLocalPathStrategy():824:824 -> a
+    33:38:java.lang.Object androidx.core.util.ObjectsCompat.requireNonNull(java.lang.Object,java.lang.String):145:145 -> a
+    33:38:androidx.core.content.FileProvider$PathStrategy getLocalPathStrategy():818 -> a
+    39:40:androidx.core.content.FileProvider$PathStrategy getLocalPathStrategy():825:825 -> a
     1:3:void attachInfo(android.content.Context,android.content.pm.ProviderInfo):626:626 -> attachInfo
     4:7:void attachInfo(android.content.Context,android.content.pm.ProviderInfo):629:629 -> attachInfo
     8:11:void attachInfo(android.content.Context,android.content.pm.ProviderInfo):634:634 -> attachInfo
-    12:26:void attachInfo(android.content.Context,android.content.pm.ProviderInfo):637:637 -> attachInfo
-    27:38:void attachInfo(android.content.Context,android.content.pm.ProviderInfo):641:641 -> attachInfo
-    39:39:void attachInfo(android.content.Context,android.content.pm.ProviderInfo):642:642 -> attachInfo
-    40:47:void attachInfo(android.content.Context,android.content.pm.ProviderInfo):638:638 -> attachInfo
-    48:55:void attachInfo(android.content.Context,android.content.pm.ProviderInfo):635:635 -> attachInfo
-    56:63:void attachInfo(android.content.Context,android.content.pm.ProviderInfo):632:632 -> attachInfo
-    1:5:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):502:502 -> b
-      # {"id":"com.android.tools.r8.residualsignature","signature":"(Landroid/content/Context;Ljava/lang/String;)Lyd;"}
-    6:18:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):504:504 -> b
-    19:30:android.content.res.XmlResourceParser getFileProviderPathsMetaData(android.content.Context,java.lang.String,android.content.pm.ProviderInfo,int):484:484 -> b
-    19:30:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):506 -> b
-    31:40:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):510:510 -> b
-    41:44:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):512:512 -> b
-    45:50:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):514:514 -> b
-    51:56:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):515:515 -> b
-    57:65:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):518:518 -> b
-    66:68:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):519:519 -> b
-    69:76:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):520:520 -> b
-    77:81:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):521:521 -> b
-    82:89:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):522:522 -> b
-    90:94:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):523:523 -> b
-    95:102:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):524:524 -> b
-    103:107:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):525:525 -> b
-    108:115:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):526:526 -> b
-    116:119:java.io.File[] androidx.core.content.ContextCompat.getExternalFilesDirs(android.content.Context,java.lang.String):321:321 -> b
-    116:119:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):527 -> b
-    120:122:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):528:528 -> b
-    123:125:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):529:529 -> b
-    126:133:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):531:531 -> b
-    134:137:java.io.File[] androidx.core.content.ContextCompat.getExternalCacheDirs(android.content.Context):372:372 -> b
-    134:137:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):532 -> b
-    138:140:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):533:533 -> b
-    141:143:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):534:534 -> b
-    144:151:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):536:536 -> b
-    152:155:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):537:537 -> b
-    156:158:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):538:538 -> b
-    159:164:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):539:539 -> b
-    165:168:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):544:544 -> b
-    169:172:java.io.File buildPath(java.io.File,java.lang.String[]):578:578 -> b
-    169:172:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):544 -> b
-    173:178:java.io.File buildPath(java.io.File,java.lang.String[]):580:580 -> b
-    173:178:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):544 -> b
-    179:184:void androidx.core.content.FileProvider$SimplePathStrategy.addRoot(java.lang.String,java.io.File):876:876 -> b
-    179:184:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):544 -> b
-    185:188:void androidx.core.content.FileProvider$SimplePathStrategy.addRoot(java.lang.String,java.io.File):882:882 -> b
-    185:188:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):544 -> b
-    189:196:void androidx.core.content.FileProvider$SimplePathStrategy.addRoot(java.lang.String,java.io.File):888:888 -> b
-    189:196:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):544 -> b
-    197:216:void androidx.core.content.FileProvider$SimplePathStrategy.addRoot(java.lang.String,java.io.File):884:884 -> b
-    197:216:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):544 -> b
-    217:223:void androidx.core.content.FileProvider$SimplePathStrategy.addRoot(java.lang.String,java.io.File):877:877 -> b
-    217:223:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):544 -> b
-    224:229:android.content.res.XmlResourceParser getFileProviderPathsMetaData(android.content.Context,java.lang.String,android.content.pm.ProviderInfo,int):487:487 -> b
-    224:229:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):506 -> b
-    230:235:android.content.res.XmlResourceParser getFileProviderPathsMetaData(android.content.Context,java.lang.String,android.content.pm.ProviderInfo,int):475:475 -> b
-    230:235:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):506 -> b
-    1:20:java.lang.String removeTrailingSlash(java.lang.String):599:599 -> c
-    21:32:java.lang.String removeTrailingSlash(java.lang.String):600:600 -> c
-    2:2:androidx.core.content.FileProvider$PathStrategy getLocalPathStrategy():817:817 -> delete
-    2:2:int delete(android.net.Uri,java.lang.String,java.lang.String[]):785 -> delete
-    2:2:androidx.core.content.FileProvider$PathStrategy getLocalPathStrategy():817:817 -> getType
-    2:2:java.lang.String getType(android.net.Uri):727 -> getType
+    12:25:void attachInfo(android.content.Context,android.content.pm.ProviderInfo):637:637 -> attachInfo
+    26:36:void attachInfo(android.content.Context,android.content.pm.ProviderInfo):641:641 -> attachInfo
+    37:39:void attachInfo(android.content.Context,android.content.pm.ProviderInfo):642:642 -> attachInfo
+    40:41:void attachInfo(android.content.Context,android.content.pm.ProviderInfo):643:643 -> attachInfo
+    42:43:void attachInfo(android.content.Context,android.content.pm.ProviderInfo):644:645 -> attachInfo
+    44:45:void attachInfo(android.content.Context,android.content.pm.ProviderInfo):645:645 -> attachInfo
+    46:48:void attachInfo(android.content.Context,android.content.pm.ProviderInfo):646:646 -> attachInfo
+    49:54:void attachInfo(android.content.Context,android.content.pm.ProviderInfo):647:647 -> attachInfo
+    55:56:void attachInfo(android.content.Context,android.content.pm.ProviderInfo):644:644 -> attachInfo
+    57:64:void attachInfo(android.content.Context,android.content.pm.ProviderInfo):638:638 -> attachInfo
+    65:72:void attachInfo(android.content.Context,android.content.pm.ProviderInfo):635:635 -> attachInfo
+    73:80:void attachInfo(android.content.Context,android.content.pm.ProviderInfo):632:632 -> attachInfo
+    1:3:androidx.core.content.FileProvider$PathStrategy getPathStrategy(android.content.Context,java.lang.String,int):453:453 -> b
+      # {"id":"com.android.tools.r8.residualsignature","signature":"(Landroid/content/Context;Ljava/lang/String;I)Lyd;"}
+    4:11:androidx.core.content.FileProvider$PathStrategy getPathStrategy(android.content.Context,java.lang.String,int):454:454 -> b
+    12:15:androidx.core.content.FileProvider$PathStrategy getPathStrategy(android.content.Context,java.lang.String,int):457:457 -> b
+    16:22:androidx.core.content.FileProvider$PathStrategy getPathStrategy(android.content.Context,java.lang.String,int):465:465 -> b
+    23:31:androidx.core.content.FileProvider$PathStrategy getPathStrategy(android.content.Context,java.lang.String,int):462:462 -> b
+    32:39:androidx.core.content.FileProvider$PathStrategy getPathStrategy(android.content.Context,java.lang.String,int):459:459 -> b
+    40:43:androidx.core.content.FileProvider$PathStrategy getPathStrategy(android.content.Context,java.lang.String,int):467:467 -> b
+    2:6:android.net.Uri getUriForFile(android.content.Context,java.lang.String,java.io.File):414:414 -> c
+    7:10:android.net.Uri androidx.core.content.FileProvider$SimplePathStrategy.getUriForFile(java.io.File):895:895 -> c
+    7:10:android.net.Uri getUriForFile(android.content.Context,java.lang.String,java.io.File):415 -> c
+    11:35:android.net.Uri androidx.core.content.FileProvider$SimplePathStrategy.getUriForFile(java.io.File):902:902 -> c
+    11:35:android.net.Uri getUriForFile(android.content.Context,java.lang.String,java.io.File):415 -> c
+    36:45:android.net.Uri androidx.core.content.FileProvider$SimplePathStrategy.getUriForFile(java.io.File):903:903 -> c
+    36:45:android.net.Uri getUriForFile(android.content.Context,java.lang.String,java.io.File):415 -> c
+    46:49:boolean androidx.core.content.FileProvider$SimplePathStrategy.belongsToRoot(java.lang.String,java.lang.String):968:968 -> c
+    46:49:android.net.Uri androidx.core.content.FileProvider$SimplePathStrategy.getUriForFile(java.io.File):904 -> c
+    46:49:android.net.Uri getUriForFile(android.content.Context,java.lang.String,java.io.File):415 -> c
+    50:53:boolean androidx.core.content.FileProvider$SimplePathStrategy.belongsToRoot(java.lang.String,java.lang.String):969:969 -> c
+    50:53:android.net.Uri androidx.core.content.FileProvider$SimplePathStrategy.getUriForFile(java.io.File):904 -> c
+    50:53:android.net.Uri getUriForFile(android.content.Context,java.lang.String,java.io.File):415 -> c
+    54:65:boolean androidx.core.content.FileProvider$SimplePathStrategy.belongsToRoot(java.lang.String,java.lang.String):972:972 -> c
+    54:65:android.net.Uri androidx.core.content.FileProvider$SimplePathStrategy.getUriForFile(java.io.File):904 -> c
+    54:65:android.net.Uri getUriForFile(android.content.Context,java.lang.String,java.io.File):415 -> c
+    66:89:android.net.Uri androidx.core.content.FileProvider$SimplePathStrategy.getUriForFile(java.io.File):905:905 -> c
+    66:89:android.net.Uri getUriForFile(android.content.Context,java.lang.String,java.io.File):415 -> c
+    90:99:android.net.Uri androidx.core.content.FileProvider$SimplePathStrategy.getUriForFile(java.io.File):916:916 -> c
+    90:99:android.net.Uri getUriForFile(android.content.Context,java.lang.String,java.io.File):415 -> c
+    100:105:android.net.Uri androidx.core.content.FileProvider$SimplePathStrategy.getUriForFile(java.io.File):917:917 -> c
+    100:105:android.net.Uri getUriForFile(android.content.Context,java.lang.String,java.io.File):415 -> c
+    106:114:android.net.Uri androidx.core.content.FileProvider$SimplePathStrategy.getUriForFile(java.io.File):918:918 -> c
+    106:114:android.net.Uri getUriForFile(android.content.Context,java.lang.String,java.io.File):415 -> c
+    115:124:android.net.Uri androidx.core.content.FileProvider$SimplePathStrategy.getUriForFile(java.io.File):920:920 -> c
+    115:124:android.net.Uri getUriForFile(android.content.Context,java.lang.String,java.io.File):415 -> c
+    125:158:android.net.Uri androidx.core.content.FileProvider$SimplePathStrategy.getUriForFile(java.io.File):924:924 -> c
+    125:158:android.net.Uri getUriForFile(android.content.Context,java.lang.String,java.io.File):415 -> c
+    159:179:android.net.Uri androidx.core.content.FileProvider$SimplePathStrategy.getUriForFile(java.io.File):925:925 -> c
+    159:179:android.net.Uri getUriForFile(android.content.Context,java.lang.String,java.io.File):415 -> c
+    180:184:android.net.Uri androidx.core.content.FileProvider$SimplePathStrategy.getUriForFile(java.io.File):926:926 -> c
+    180:184:android.net.Uri getUriForFile(android.content.Context,java.lang.String,java.io.File):415 -> c
+    185:190:android.net.Uri androidx.core.content.FileProvider$SimplePathStrategy.getUriForFile(java.io.File):911:911 -> c
+    185:190:android.net.Uri getUriForFile(android.content.Context,java.lang.String,java.io.File):415 -> c
+    191:196:android.net.Uri androidx.core.content.FileProvider$SimplePathStrategy.getUriForFile(java.io.File):897:897 -> c
+    191:196:android.net.Uri getUriForFile(android.content.Context,java.lang.String,java.io.File):415 -> c
+    1:5:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):502:502 -> d
+      # {"id":"com.android.tools.r8.residualsignature","signature":"(Landroid/content/Context;Ljava/lang/String;I)Lyd;"}
+    6:18:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):504:504 -> d
+    19:27:android.content.res.XmlResourceParser getFileProviderPathsMetaData(android.content.Context,java.lang.String,android.content.pm.ProviderInfo,int):479:479 -> d
+    19:27:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):506 -> d
+    28:34:android.content.res.XmlResourceParser getFileProviderPathsMetaData(android.content.Context,java.lang.String,android.content.pm.ProviderInfo,int):480:480 -> d
+    28:34:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):506 -> d
+    35:37:android.content.res.XmlResourceParser getFileProviderPathsMetaData(android.content.Context,java.lang.String,android.content.pm.ProviderInfo,int):481:481 -> d
+    35:37:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):506 -> d
+    38:47:android.content.res.XmlResourceParser getFileProviderPathsMetaData(android.content.Context,java.lang.String,android.content.pm.ProviderInfo,int):484:484 -> d
+    38:47:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):506 -> d
+    48:56:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):510:510 -> d
+    57:60:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):512:512 -> d
+    61:66:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):514:514 -> d
+    67:72:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):515:515 -> d
+    73:81:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):518:518 -> d
+    82:84:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):519:519 -> d
+    85:92:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):520:520 -> d
+    93:97:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):521:521 -> d
+    98:105:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):522:522 -> d
+    106:110:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):523:523 -> d
+    111:118:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):524:524 -> d
+    119:123:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):525:525 -> d
+    124:131:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):526:526 -> d
+    132:135:java.io.File[] androidx.core.content.ContextCompat.getExternalFilesDirs(android.content.Context,java.lang.String):321:321 -> d
+    132:135:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):527 -> d
+    136:138:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):528:528 -> d
+    139:141:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):529:529 -> d
+    142:149:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):531:531 -> d
+    150:153:java.io.File[] androidx.core.content.ContextCompat.getExternalCacheDirs(android.content.Context):372:372 -> d
+    150:153:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):532 -> d
+    154:156:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):533:533 -> d
+    157:159:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):534:534 -> d
+    160:167:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):536:536 -> d
+    168:171:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):537:537 -> d
+    172:174:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):538:538 -> d
+    175:180:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):539:539 -> d
+    181:184:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):544:544 -> d
+    185:188:java.io.File buildPath(java.io.File,java.lang.String[]):578:578 -> d
+    185:188:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):544 -> d
+    189:194:java.io.File buildPath(java.io.File,java.lang.String[]):580:580 -> d
+    189:194:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):544 -> d
+    195:200:void androidx.core.content.FileProvider$SimplePathStrategy.addRoot(java.lang.String,java.io.File):876:876 -> d
+    195:200:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):544 -> d
+    201:204:void androidx.core.content.FileProvider$SimplePathStrategy.addRoot(java.lang.String,java.io.File):882:882 -> d
+    201:204:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):544 -> d
+    205:212:void androidx.core.content.FileProvider$SimplePathStrategy.addRoot(java.lang.String,java.io.File):888:888 -> d
+    205:212:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):544 -> d
+    213:232:void androidx.core.content.FileProvider$SimplePathStrategy.addRoot(java.lang.String,java.io.File):884:884 -> d
+    213:232:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):544 -> d
+    233:239:void androidx.core.content.FileProvider$SimplePathStrategy.addRoot(java.lang.String,java.io.File):877:877 -> d
+    233:239:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):544 -> d
+    240:245:android.content.res.XmlResourceParser getFileProviderPathsMetaData(android.content.Context,java.lang.String,android.content.pm.ProviderInfo,int):487:487 -> d
+    240:245:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):506 -> d
+    246:251:android.content.res.XmlResourceParser getFileProviderPathsMetaData(android.content.Context,java.lang.String,android.content.pm.ProviderInfo,int):475:475 -> d
+    246:251:androidx.core.content.FileProvider$PathStrategy parsePathStrategy(android.content.Context,java.lang.String,int):506 -> d
+    1:8:int delete(android.net.Uri,java.lang.String,java.lang.String[]):785:785 -> delete
+    9:13:int delete(android.net.Uri,java.lang.String,java.lang.String[]):786:786 -> delete
+    1:20:java.lang.String removeTrailingSlash(java.lang.String):599:599 -> e
+    21:32:java.lang.String removeTrailingSlash(java.lang.String):600:600 -> e
+    1:8:java.lang.String getType(android.net.Uri):727:727 -> getType
+    9:20:java.lang.String getType(android.net.Uri):729:729 -> getType
+    21:30:java.lang.String getType(android.net.Uri):731:731 -> getType
+    31:41:java.lang.String getType(android.net.Uri):732:732 -> getType
+    42:44:java.lang.String getType(android.net.Uri):738:738 -> getType
     1:3:java.lang.String getTypeAnonymous(android.net.Uri):748:748 -> getTypeAnonymous
     1:8:android.net.Uri insert(android.net.Uri,android.content.ContentValues):757:757 -> insert
     1:2:boolean onCreate():0:0 -> onCreate
-    2:2:androidx.core.content.FileProvider$PathStrategy getLocalPathStrategy():817:817 -> openFile
-    2:2:android.os.ParcelFileDescriptor openFile(android.net.Uri,java.lang.String):810 -> openFile
-    2:2:androidx.core.content.FileProvider$PathStrategy getLocalPathStrategy():817:817 -> query
-    2:2:android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String):687 -> query
+    1:8:android.os.ParcelFileDescriptor openFile(android.net.Uri,java.lang.String):810:810 -> openFile
+    9:19:int modeToMode(java.lang.String):557:557 -> openFile
+    9:19:android.os.ParcelFileDescriptor openFile(android.net.Uri,java.lang.String):811 -> openFile
+    20:36:int modeToMode(java.lang.String):559:559 -> openFile
+    20:36:android.os.ParcelFileDescriptor openFile(android.net.Uri,java.lang.String):811 -> openFile
+    37:47:int modeToMode(java.lang.String):562:562 -> openFile
+    37:47:android.os.ParcelFileDescriptor openFile(android.net.Uri,java.lang.String):811 -> openFile
+    48:58:int modeToMode(java.lang.String):565:565 -> openFile
+    48:58:android.os.ParcelFileDescriptor openFile(android.net.Uri,java.lang.String):811 -> openFile
+    59:69:int modeToMode(java.lang.String):567:567 -> openFile
+    59:69:android.os.ParcelFileDescriptor openFile(android.net.Uri,java.lang.String):811 -> openFile
+    70:78:int modeToMode(java.lang.String):571:571 -> openFile
+    70:78:android.os.ParcelFileDescriptor openFile(android.net.Uri,java.lang.String):811 -> openFile
+    79:83:android.os.ParcelFileDescriptor openFile(android.net.Uri,java.lang.String):812:812 -> openFile
+    1:8:android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String):687:687 -> query
+    9:16:android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String):688:688 -> query
+    17:18:android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String):691:691 -> query
+    19:21:android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String):694:694 -> query
+    22:24:android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String):695:695 -> query
+    25:32:android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String):697:697 -> query
+    33:40:android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String):698:698 -> query
+    41:46:android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String):699:699 -> query
+    47:56:android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String):700:700 -> query
+    57:64:android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String):701:701 -> query
+    65:68:android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String):702:702 -> query
+    69:82:android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String):703:703 -> query
+    83:84:java.lang.String[] copyOf(java.lang.String[],int):587:587 -> query
+    83:84:android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String):707 -> query
+    85:87:java.lang.String[] copyOf(java.lang.String[],int):588:588 -> query
+    85:87:android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String):707 -> query
+    88:89:java.lang.Object[] copyOf(java.lang.Object[],int):593:593 -> query
+    88:89:android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String):708 -> query
+    90:92:java.lang.Object[] copyOf(java.lang.Object[],int):594:594 -> query
+    90:92:android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String):708 -> query
+    93:98:android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String):710:710 -> query
+    99:102:android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String):711:711 -> query
     1:8:int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[]):767:767 -> update
 androidx.core.content.FileProvider$SimplePathStrategy -> yd:
 # {"id":"sourceFile","fileName":"FileProvider.java"}
@@ -43060,6 +43120,24 @@ androidx.core.content.FileProvider$SimplePathStrategy -> yd:
     1:3:void <init>(java.lang.String):867:867 -> <init>
     4:10:void <init>(java.lang.String):865:865 -> <init>
     11:13:void <init>(java.lang.String):868:868 -> <init>
+    1:7:java.io.File getFileForUri(android.net.Uri):931:931 -> a
+    8:15:java.io.File getFileForUri(android.net.Uri):933:933 -> a
+    16:24:java.io.File getFileForUri(android.net.Uri):939:939 -> a
+    25:32:java.io.File getFileForUri(android.net.Uri):940:940 -> a
+    33:42:java.io.File getFileForUri(android.net.Uri):942:942 -> a
+    43:47:java.io.File getFileForUri(android.net.Uri):947:947 -> a
+    48:51:java.io.File getFileForUri(android.net.Uri):949:949 -> a
+    52:59:java.io.File getFileForUri(android.net.Uri):954:954 -> a
+    60:63:boolean belongsToRoot(java.lang.String,java.lang.String):968:968 -> a
+    60:63:java.io.File getFileForUri(android.net.Uri):954 -> a
+    64:67:boolean belongsToRoot(java.lang.String,java.lang.String):969:969 -> a
+    64:67:java.io.File getFileForUri(android.net.Uri):954 -> a
+    68:80:boolean belongsToRoot(java.lang.String,java.lang.String):972:972 -> a
+    68:80:java.io.File getFileForUri(android.net.Uri):954 -> a
+    81:88:java.io.File getFileForUri(android.net.Uri):955:955 -> a
+    89:94:java.io.File getFileForUri(android.net.Uri):951:951 -> a
+    95:100:java.io.File getFileForUri(android.net.Uri):944:944 -> a
+    101:106:java.io.File getFileForUri(android.net.Uri):937:937 -> a
 androidx.core.content.OnConfigurationChangedProvider -> um:
 # {"id":"sourceFile","fileName":"OnConfigurationChangedProvider.kt"}
     void addOnConfigurationChangedListener(androidx.core.util.Consumer) -> e
