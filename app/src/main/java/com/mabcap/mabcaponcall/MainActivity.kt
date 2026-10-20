@@ -137,7 +137,7 @@ class MainActivity : AppCompatActivity() {
         updateProgressBar = findViewById(R.id.updateProgressBar)
 
         // فحص التحديثات تلقائياً في الخلفية عند فتح التطبيق مع إظهار Toast بالنتيجة
-        checkForAppUpdates(true)
+        checkForAppUpdates(false)
 
         // تفعيل عملية التحديث عند الضغط على زر الـ Refresh
         btnRefresh.setOnClickListener {
