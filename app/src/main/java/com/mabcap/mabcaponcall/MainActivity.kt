@@ -136,8 +136,8 @@ class MainActivity : AppCompatActivity() {
         btnUpdate = findViewById(R.id.btnUpdate)
         updateProgressBar = findViewById(R.id.updateProgressBar)
 
-        // فحص التحديثات تلقائياً في الخلفية عند فتح التطبيق
-        checkForAppUpdates(false)
+        // فحص التحديثات تلقائياً في الخلفية عند فتح التطبيق مع إظهار Toast بالنتيجة
+        checkForAppUpdates(true)
 
         // تفعيل عملية التحديث عند الضغط على زر الـ Refresh
         btnRefresh.setOnClickListener {
@@ -157,29 +157,42 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        // تفاعل زر التحديث للتحقق والتحميل
+        // تفاعل زر التحديث للتحقق وإظهار الـ Dialog بالتفاصيل
         btnUpdate.setOnClickListener {
             if (!isConnectedToInternet()) {
                 showNoInternetDialogUpdateBTN()
                 return@setOnClickListener
             }
 
-            showUpdateProgressBar(true)
-
             updateInfo?.let { info ->
-                downloadAndInstallApk(info.apkDownloadUrl)
+                // إظهار نافذة تفاصيل التحديث مباشرة إذا كانت البيانات مخزنة مسبقاً
+                showUpdateDialog(this, info) {
+                    // التحقق من الإنترنت مرة أخرى قبل بدء التحميل من داخل الـ Dialog
+                    if (!isConnectedToInternet()) {
+                        showNoInternetDialogUpdateBTN()
+                        return@showUpdateDialog
+                    }
+                    downloadAndInstallApk(info.apkDownloadUrl)
+                }
             } ?: run {
                 // إذا لم يتم جلب البيانات مسبقاً، قم بإعادة الفحص الآن
+                showUpdateProgressBar(true)
                 CoroutineScope(Dispatchers.Main).launch {
                     val checker = JsonUpdateChecker(this@MainActivity)
                     val info = checker.checkUpdate()
                     updateInfo = info
+                    showUpdateProgressBar(false)
 
                     if (info != null) {
-                        downloadAndInstallApk(info.apkDownloadUrl)
+                        showUpdateDialog(this@MainActivity, info) {
+                            if (!isConnectedToInternet()) {
+                                showNoInternetDialogUpdateBTN()
+                                return@showUpdateDialog
+                            }
+                            downloadAndInstallApk(info.apkDownloadUrl)
+                        }
                     } else {
-                        showUpdateProgressBar(false)
-                        Toast.makeText(this@MainActivity, "عذراً، لا يوجد تحديث متاح حالياً", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@MainActivity, "عذراً، التطبيق محدث بأحدث إصدار", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
@@ -245,17 +258,19 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    // فحص التحديثات (مع خيار إظهار نافذة منبثقة تلقائية أو مجرد تخزينها للزر)
-    private fun checkForAppUpdates(showDialogOnAvailable: Boolean) {
+    // فحص التحديثات عند فتح التطبيق وإظهار Toast بالنتيجة
+    private fun checkForAppUpdates(showToastResult: Boolean) {
         if (!isConnectedToInternet()) return
 
         CoroutineScope(Dispatchers.Main).launch {
             val checker = JsonUpdateChecker(this@MainActivity)
             updateInfo = checker.checkUpdate()
 
-            if (updateInfo != null && showDialogOnAvailable) {
-                showUpdateDialog(this@MainActivity, updateInfo!!) {
-                    updateInfo?.let { downloadAndInstallApk(it.apkDownloadUrl) }
+            if (showToastResult) {
+                if (updateInfo != null) {
+                    Toast.makeText(this@MainActivity, "يتوفر تحديث جديد للإصدار: ${updateInfo?.versionName}", Toast.LENGTH_LONG).show()
+                } else {
+                    Toast.makeText(this@MainActivity, "التطبيق محدث لأحدث إصدار", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -448,7 +463,6 @@ class MainActivity : AppCompatActivity() {
 // ============================================================
 class JsonUpdateChecker(private val context: Context) {
 
-    // رابط ملف الـ JSON الاستئنافي المباشر (يمكنك تعديل الرابط إذا تطلب الأمر)
     private val jsonUrl = "https://doctordoom93.github.io/update.json"
 
     suspend fun checkUpdate(): UpdateInfo? {
@@ -457,7 +471,7 @@ class JsonUpdateChecker(private val context: Context) {
                 val url = URL(jsonUrl)
                 val connection = url.openConnection() as HttpURLConnection
                 connection.requestMethod = "GET"
-                connection.useCaches = false // إلغاء التخزين المؤقت لجلب أحدث ملف دائماً
+                connection.useCaches = false
 
                 if (connection.responseCode == HttpURLConnection.HTTP_OK) {
                     val reader = BufferedReader(InputStreamReader(connection.inputStream))
@@ -474,7 +488,6 @@ class JsonUpdateChecker(private val context: Context) {
                     val releaseNotes = json.optString("releaseNotes", "لا توجد تفاصيل متاحة.")
                     val apkUrl = json.getString("apkUrl")
 
-                    // جلب رقم إصدار التطبيق الحالي المثبت على الجهاز
                     val packageInfo = context.packageManager.getPackageInfo(context.packageName, 0)
                     val currentVersionCode = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                         packageInfo.longVersionCode.toInt()
@@ -483,7 +496,6 @@ class JsonUpdateChecker(private val context: Context) {
                         packageInfo.versionCode
                     }
 
-                    // مقارنة رقم الاصدار
                     if (latestVersionCode > currentVersionCode) {
                         return@withContext UpdateInfo(
                             versionName = latestVersionName,
@@ -510,7 +522,7 @@ fun showUpdateDialog(context: Context, updateInfo: UpdateInfo, onConfirmDownload
             onConfirmDownload()
         }
         .setNegativeButton("لاحقاً", null)
-        .setCancelable(false)
+        .setCancelable(true)
 
     val dialog = builder.create()
     dialog.show()
