@@ -32,12 +32,38 @@
                 android:textStyle="bold"
                 tools:text="مستشفى مبرة العصافرة Capital" />
 
-            <!-- حاوية زر التحديث ومؤشر التحميل (مثبتة في جهة اليسار بوضع RTL) -->
             <FrameLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|center_vertical"
                 android:layout_marginEnd="8dp">
+
+                <ImageButton
+                    android:id="@+id/btnUpdate"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:padding="12dp"
+                    android:layout_gravity="center"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="البحث عن تحديثات"
+                    android:src="@drawable/ic_update"
+                    app:tint="#FFFFFF" />
+
+                <ProgressBar
+                    android:id="@+id/updateProgressBar"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center"
+                    android:indeterminateTint="#FFFFFF"
+                    android:padding="15dp"
+                    style="?android:attr/progressBarStyleSmall" />
+
+            </FrameLayout>
+            <!-- حاوية زر التحديث ومؤشر التحميل (مثبتة في جهة اليسار بوضع RTL) -->
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_vertical" >
 
                 <ImageButton
                     android:id="@+id/btnRefresh"
@@ -60,6 +86,8 @@
                     style="?android:attr/progressBarStyleSmall" />
 
             </FrameLayout>
+
+
 
         </com.google.android.material.appbar.MaterialToolbar>
 
