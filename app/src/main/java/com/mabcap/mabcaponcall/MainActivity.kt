@@ -192,7 +192,7 @@ class MainActivity : AppCompatActivity() {
                             downloadAndInstallApk(info.apkDownloadUrl)
                         }
                     } else {
-                        Toast.makeText(this@MainActivity, "عذراً، التطبيق محدث بأحدث إصدار", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@MainActivity, "آخر إصدار مثبت بالفعل", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
@@ -270,7 +270,7 @@ class MainActivity : AppCompatActivity() {
                 if (updateInfo != null) {
                     Toast.makeText(this@MainActivity, "يتوفر تحديث جديد للإصدار: ${updateInfo?.versionName}", Toast.LENGTH_LONG).show()
                 } else {
-                    Toast.makeText(this@MainActivity, "التطبيق محدث لأحدث إصدار", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@MainActivity, "آخر إصدار مثبت بالفعل", Toast.LENGTH_SHORT).show()
                 }
             }
         }

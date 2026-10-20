@@ -8,9 +8,9 @@
     android:paddingEnd="24dp"
     android:paddingTop="8dp"
     android:paddingBottom="16dp"
-    android:layoutDirection="rtl">
+    android:layoutDirection="rtl"
+    android:background="#FF0F766E">
 
-    <!-- شريط التقدم الخاص بـ Material 3 مع حواف دائرية -->
     <com.google.android.material.progressindicator.LinearProgressIndicator
         android:id="@+id/dialogProgressBar"
         android:layout_width="match_parent"
@@ -18,15 +18,37 @@
         android:max="100"
         android:progress="0"
         app:trackCornerRadius="4dp"
-        android:layout_marginBottom="12dp"/>
+        android:layout_marginBottom="12dp"
+        app:indicatorColor="#FF1AD1C2"
+        app:trackColor="#FF128F85"/>
 
-    <!-- نص النسبة المئوية -->
-    <TextView
-        android:id="@+id/tvProgressPercent"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:text="0%"
-        android:textSize="14sp"
-        android:textColor="#666666"/>
+        android:orientation="horizontal"
+        android:layoutDirection="rtl"
+        android:background="#FF0F766E">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:text="يتم التحميل الآن ..."
+            android:textSize="14sp"
+            android:textColor="@android:color/white"/>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tvProgressPercent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="0%"
+            android:textSize="14sp"
+            android:textColor="@android:color/white"/>
+    </LinearLayout>
 </LinearLayout>
