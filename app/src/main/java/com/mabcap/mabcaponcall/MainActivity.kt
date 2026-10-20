@@ -34,7 +34,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.json.JSONArray
 import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.File
@@ -172,7 +171,7 @@ class MainActivity : AppCompatActivity() {
             } ?: run {
                 // إذا لم يتم جلب البيانات مسبقاً، قم بإعادة الفحص الآن
                 CoroutineScope(Dispatchers.Main).launch {
-                    val checker = GitHubUpdateChecker(this@MainActivity)
+                    val checker = JsonUpdateChecker(this@MainActivity)
                     val info = checker.checkUpdate()
                     updateInfo = info
 
@@ -251,7 +250,7 @@ class MainActivity : AppCompatActivity() {
         if (!isConnectedToInternet()) return
 
         CoroutineScope(Dispatchers.Main).launch {
-            val checker = GitHubUpdateChecker(this@MainActivity)
+            val checker = JsonUpdateChecker(this@MainActivity)
             updateInfo = checker.checkUpdate()
 
             if (updateInfo != null && showDialogOnAvailable) {
@@ -281,20 +280,17 @@ class MainActivity : AppCompatActivity() {
                     return@launch
                 }
 
-                // تحديد مكان حفظ الملف
                 val file = File(getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), "update.apk")
                 if (file.exists()) {
                     file.delete()
                 }
 
-                // كتابة الملف من الإنترنت إلى الهاتف
                 connection.inputStream.use { input ->
                     file.outputStream().use { output ->
                         input.copyTo(output)
                     }
                 }
 
-                // العودة للـ Main Thread لتثبيت التطبيق وإخفاء الـ Progress
                 withContext(Dispatchers.Main) {
                     showUpdateProgressBar(false)
                     installApk(file)
@@ -447,19 +443,21 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
-// كلاس مساعد لجلب بيانات الإصدار من GitHub Releases API (محدث ومرن)
-class GitHubUpdateChecker(private val context: Context) {
-    private val owner = "DoctorDoom93"
-    private val repo = "mabcaponcall"
-    private val apiReleaseUrl = "https://api.github.com/repos/$owner/$repo/releases/latest"
+// ============================================================
+// 💡 كلاس فحص التحديثات باستخدام ملف JSON
+// ============================================================
+class JsonUpdateChecker(private val context: Context) {
+
+    // رابط ملف الـ JSON الاستئنافي المباشر (يمكنك تعديل الرابط إذا تطلب الأمر)
+    private val jsonUrl = "https://doctordoom93.github.io/update.json"
 
     suspend fun checkUpdate(): UpdateInfo? {
         return withContext(Dispatchers.IO) {
             try {
-                val url = URL(apiReleaseUrl)
+                val url = URL(jsonUrl)
                 val connection = url.openConnection() as HttpURLConnection
                 connection.requestMethod = "GET"
-                connection.setRequestProperty("User-Agent", "Android-App")
+                connection.useCaches = false // إلغاء التخزين المؤقت لجلب أحدث ملف دائماً
 
                 if (connection.responseCode == HttpURLConnection.HTTP_OK) {
                     val reader = BufferedReader(InputStreamReader(connection.inputStream))
@@ -471,22 +469,12 @@ class GitHubUpdateChecker(private val context: Context) {
                     reader.close()
 
                     val json = JSONObject(response.toString())
-                    val rawTagName = json.getString("tag_name").trim()
-                    val tagNameClean = rawTagName.lowercase().replace("v", "")
-                    val releaseNotes = json.optString("body", "لا توجد تفاصيل متاحة.")
+                    val latestVersionCode = json.getInt("versionCode")
+                    val latestVersionName = json.optString("versionName", "")
+                    val releaseNotes = json.optString("releaseNotes", "لا توجد تفاصيل متاحة.")
+                    val apkUrl = json.getString("apkUrl")
 
-                    val assets: JSONArray = json.getJSONArray("assets")
-                    var apkUrl: String? = null
-                    for (i in 0 until assets.length()) {
-                        val asset = assets.getJSONObject(i)
-                        if (asset.getString("name").endsWith(".apk", ignoreCase = true)) {
-                            apkUrl = asset.getString("browser_download_url")
-                            break
-                        }
-                    }
-
-                    if (apkUrl == null) return@withContext null
-
+                    // جلب رقم إصدار التطبيق الحالي المثبت على الجهاز
                     val packageInfo = context.packageManager.getPackageInfo(context.packageName, 0)
                     val currentVersionCode = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                         packageInfo.longVersionCode.toInt()
@@ -494,23 +482,12 @@ class GitHubUpdateChecker(private val context: Context) {
                         @Suppress("DEPRECATION")
                         packageInfo.versionCode
                     }
-                    val currentVersionName = packageInfo.versionName ?: ""
 
-                    // فحص ذكي: هل الـ Tag رقماً صحيحاً (مثل 2) أم صيغة إصدار (مثل 1.1)؟
-                    val latestVersionCode = tagNameClean.toIntOrNull()
-
-                    val isUpdateAvailable = if (latestVersionCode != null) {
-                        // إذا كان رقماً صحيحاً، قارنه مع versionCode
-                        latestVersionCode > currentVersionCode
-                    } else {
-                        // إذا كان نصياً/عشرياً، قارنه مع versionName للتطبيق
-                        tagNameClean != currentVersionName.lowercase().replace("v", "")
-                    }
-
-                    if (isUpdateAvailable) {
+                    // مقارنة رقم الاصدار
+                    if (latestVersionCode > currentVersionCode) {
                         return@withContext UpdateInfo(
-                            versionName = rawTagName,
-                            versionCode = latestVersionCode ?: (currentVersionCode + 1),
+                            versionName = latestVersionName,
+                            versionCode = latestVersionCode,
                             releaseNotes = releaseNotes,
                             apkDownloadUrl = apkUrl
                         )
